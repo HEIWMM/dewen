@@ -291,7 +291,6 @@ a:hover{
 }
 .bottom-list ul{
     position: absolute;
-    transition: 1.5s;
 }
 .bottom-list li{
    
@@ -730,7 +729,6 @@ a:hover{
 .recommend-pic .huantu .yidong{
     position: absolute;
     top: 0px;
-    transition: 2s;
 }
 .recommend-pic .huantu li img{
     width: 223px;

@@ -22,34 +22,28 @@ function shadow() {
                     };
         }(i));
         
-    }
-    
+    }    
 }
 function button() {
     var button = $(".map #newChange li");
     var a = $("#map-pic img");
     var b = $(".advice-information li");
-    button[0].onmouseover=function(){
-        $($(".map #newChange li")[1]).removeClass("deepbtn");
-        $($(".map #newChange li")[0]).addClass("deepbtn");
-        a[0].src = "image/123.gif";
+    for (var i = 0; i < 2; i++) {
+        way(i,"mouseover");
+        way(i,"mouseout");
     }
-    button[1].onmouseover=function(){
-        $($(".map #newChange li")[0]).removeClass("deepbtn");
-        $($(".map #newChange li")[1]).addClass("deepbtn");
-        a[0].src = "image/456.jpg";
+    function way(x,event){
+        $(button[x]).on(event,function(){
+            $(button[1-x]).removeClass("deepbtn");
+            $(button[x]).addClass("deepbtn");
+            if (x==0) {
+            a[0].src = "image/123.gif";
+            }
+            else if (x==1) {
+                a[0].src = "image/456.jpg";
+            }
+        })      
     }
-    button[0].onmouseout=function(){
-        $($(".map #newChange li")[0]).addClass("deepbtn");
-        $($(".map #newChange li")[1]).removeClass("deepbtn");
-    }
-    button[1].onmouseout=function(){
-        $($(".map #newChange li")[0]).removeClass("deepbtn");
-    }
-    
-    
-
-   
 }
 function changeColor() {
     var a = $(".search-list li");
@@ -61,7 +55,7 @@ function changeColor() {
                     $($(".search-list li")[j]).addClass("changeColor");
                     b[0].value = "例如：荷棠鱼坊烧鱼 或 樱花日本料理"+j*1000
             }
-    }   (i));
+        }(i));
     }
     $(b[0]).focus(function(){
         b[0].value = "";
@@ -78,50 +72,41 @@ function roll() {
         if (d<-110) {
             d = 0;
         }
-        c.style.top = d+"px";
-    },3000);
+        $(c).stop().animate({top:d+"px"},2200,'elasticOut');
+    },5000);
     b[0].onclick=function(){
         d-=22;
         if (d<-110) {
             d = 0;
         }
-        c.style.top = d+"px";
+        $(c).stop().animate({top:d+"px"},2200,'elasticOut');
     }
     a[0].onclick=function(){
         d+=22;
         if (d>0) {
             d = 0;
         }
-        c.style.top = d+"px";
+        $(c).stop().animate({top:d+"px"},2200,'elasticOut');   
     }
-
 }
 
 function changeif(){
     var a = $(".shop-bottom img");
     var button2 = $(".shop #newChange li");
-    button2[0].onmouseover=function(){
-        $($(".shop #newChange li")[1]).removeClass("deepbtn");
-        $($(".shop #newChange li")[0]).addClass("deepbtn");
+    button2[0].onclick=function(){
+        $(button2[1]).removeClass("deepbtn");
+        $(button2[0]).addClass("deepbtn");
         for (var i = 0; i < 3; i++) {
             a[i].src = "image/hot_list_pic1.gif";
         }
     }
-    button2[1].onmouseover=function(){
-        $($(".shop #newChange li")[0]).removeClass("deepbtn");
-        $($(".shop #newChange li")[1]).addClass("deepbtn");
+    button2[1].onclick=function(){
+        $(button2[0]).removeClass("deepbtn");
+        $(button2[1]).addClass("deepbtn");
         for (var i = 0; i < 3; i++) {
             a[i].src = "image/hot_list_pic2.gif";
         }
     }
-    button2[0].onmouseout=function(){
-        $($(".shop #newChange li")[0]).addClass("deepbtn");
-        $($(".shop #newChange li")[1]).removeClass("deepbtn");
-    }
-    button2[1].onmouseout=function(){
-        $($(".shop #newChange li")[0]).removeClass("deepbtn");
-    }
-
 }
 function changecps() {
     var button3 = $(".coupons #newChange li");
@@ -130,26 +115,20 @@ function changecps() {
         (function(j){
             button3[j].onmouseover = function(){
                        if (j==0) {
-                            $($(".coupons #newChange li")[j]).addClass("deepbtn");
-                            $($(".coupons #newChange li")[1]).removeClass("deepbtn");
-                            $($(".coupons #newChange li")[2]).removeClass("deepbtn");
+                            bnt(j);
                             for(var k = 0;k<5;k++){
                                 a[k].innerHTML = "京都怀石花传美浓吉";
                             }
                             
                         }
                         else if (j==1) {
-                            $($(".coupons #newChange li")[j]).addClass("deepbtn");
-                            $($(".coupons #newChange li")[0]).removeClass("deepbtn");
-                            $($(".coupons #newChange li")[2]).removeClass("deepbtn");
+                            bnt(j);
                             for(var k = 0;k<5;k++){
                                 a[k].innerHTML = "外婆家(荟聚购物中)";
                             }
                         }
                         else if (j==2) {
-                            $($(".coupons #newChange li")[j]).addClass("deepbtn");
-                            $($(".coupons #newChange li")[0]).removeClass("deepbtn");
-                            $($(".coupons #newChange li")[1]).removeClass("deepbtn");
+                            bnt(j);
                             for(var k = 0;k<5;k++){
                                 a[k].innerHTML = "新荣记(金融大街店)";
                             }
@@ -159,22 +138,24 @@ function changecps() {
         (function(j){
             button3[j].onmouseout = function(){
                         if (j==0) {
-                            $($(".coupons #newChange li")[j]).addClass("deepbtn");
-                            $($(".coupons #newChange li")[1]).removeClass("deepbtn");
-                            $($(".coupons #newChange li")[2]).removeClass("deepbtn");
+                            bnt(j);
                         }
                         else if (j==1) {
-                            $($(".coupons #newChange li")[j]).addClass("deepbtn");
-                            $($(".coupons #newChange li")[0]).removeClass("deepbtn");
-                            $($(".coupons #newChange li")[2]).removeClass("deepbtn");
+                            bnt(j);
                         }
                         else if (j==2) {
-                            $($(".coupons #newChange li")[j]).addClass("deepbtn");
-                            $($(".coupons #newChange li")[0]).removeClass("deepbtn");
-                            $($(".coupons #newChange li")[1]).removeClass("deepbtn");
+                            bnt(j);
                         }
                     };
         }(i));
+    }
+    function bnt(z){
+        $(button3[z]).addClass("deepbtn");
+        for(var i=0;i<3;i++){
+            if (i!=z) {
+                $(button3[i]).removeClass("deepbtn");
+            }
+        }
     }
 }
 function changeadv() {
@@ -184,25 +165,19 @@ function changeadv() {
         (function(j){
             button1[j].onmouseover = function(){
                        if (j==0) {
-                            $($(".advice #newChange li")[j]).addClass("deepbtn");
-                            $($(".advice #newChange li")[1]).removeClass("deepbtn");
-                            $($(".advice #newChange li")[2]).removeClass("deepbtn");
+                           butn(j);
                             for(var k = 0;k<5;k++){
                                 a[k].innerHTML = "墨西哥鸡肉卷";
                             }
                         }
                         else if (j==1) {
-                            $($(".advice #newChange li")[j]).addClass("deepbtn");
-                            $($(".advice #newChange li")[0]).removeClass("deepbtn");
-                            $($(".advice #newChange li")[2]).removeClass("deepbtn");
+                           butn(j);
                             for(var k = 0;k<5;k++){
                                 a[k].innerHTML = "老北京猪肉卷";
                             }
                         }
                         else if (j==2) {
-                            $($(".advice #newChange li")[j]).addClass("deepbtn");
-                            $($(".advice #newChange li")[0]).removeClass("deepbtn");
-                            $($(".advice #newChange li")[1]).removeClass("deepbtn");
+                            butn(j);
                             for(var k = 0;k<5;k++){
                                 a[k].innerHTML = "老重庆牛肉卷";
                             }
@@ -212,22 +187,24 @@ function changeadv() {
         (function(j){
             button1[j].onmouseout = function(){
                         if (j==0) {
-                            $($(".advice #newChange li")[j]).addClass("deepbtn");
-                            $($(".advice #newChange li")[1]).removeClass("deepbtn");
-                            $($(".advice #newChange li")[2]).removeClass("deepbtn");
+                            butn(j);
                         }
                         else if (j==1) {
-                            $($(".advice #newChange li")[j]).addClass("deepbtn");
-                            $($(".advice #newChange li")[0]).removeClass("deepbtn");
-                            $($(".advice #newChange li")[2]).removeClass("deepbtn");
+                            butn(j);
                         }
                         else if (j==2) {
-                            $($(".advice #newChange li")[j]).addClass("deepbtn");
-                            $($(".advice #newChange li")[0]).removeClass("deepbtn");
-                            $($(".advice #newChange li")[1]).removeClass("deepbtn");
+                            butn(j);
                         }
                     };
         }(i));
+    }
+    function butn(z){
+        $(button1[z]).addClass("deepbtn");
+        for(var i=0;i<3;i++){
+            if (i!=z) {
+                $(button1[i]).removeClass("deepbtn");
+            }
+        }
     }
 }
 function bbs() {
@@ -279,62 +256,48 @@ function huantu() {
         b[t].style.border = "2px solid red";
         for(var i = 0;i<3;i++){
             if(b[i].style.border = "2px solid red"&&t==0){
-                c[0].style.display = "none";
-                $(c[0]).fadeIn(800);
+                fade(0,0);
                 e[0].innerHTML = "<p>爸爸去哪儿~~~~</p>";
             }
             if(b[i].style.border = "2px solid red"&&t==1){
-                c[0].style.display = "none";
-                $(c[1]).fadeIn(800);
+                fade(1,0);
                 e[0].innerHTML = "<p>妈妈去哪儿~~~~</p>";
             }
             if(b[i].style.border = "2px solid red"&&t==2){
-                c[1].style.display = "none";
-                $(c[2]).fadeIn(800);
+                fade(2,1);
                 e[0].innerHTML = "<p>姐姐去哪儿~~~~</p>";
             }
         }
         console.log(t);
         t++;
-    },3000);
+    },3500);
     for(var i =0;i < 3;i++){
         (function(j){
             b[j].onclick=function(){
                 b[j].style.border = "2px solid red";
-
-                console.log(c);
                 if (j==0) {
-                    for(var i = 0;i<3;i++){
-                        if (i!=j) {
-                            b[i].style.border = "none";
-                        }
-                    }
-                    c[0].style.display = "none";
-                    $(c[0]).fadeIn(800);
+                    fade(0,0);
                     e[0].innerHTML = "<p>爸爸去哪儿~~~~</p>";
                 }
                 if (j==1) {
-                    for(var i = 0;i<3;i++){
-                        if (i!=j) {
-                            b[i].style.border = "none";
-                        }
-                    }
-                    c[0].style.display = "none";
-                    $(c[1]).fadeIn(800);
+                    fade(j,0);
                     e[0].innerHTML = "<p>妈妈去哪儿~~~~</p>";
                 }
                 if (j==2) {
-                    for(var i = 0;i<3;i++){
-                        if (i!=j) {
-                            b[i].style.border = "none";
-                        }
-                    }
-                    c[1].style.display = "none";
-                    $(c[2]).fadeIn(800);
+                    fade(j,1);
                     e[0].innerHTML = "<p>姐姐去哪儿~~~~</p>";
                 }
             }
         }(i));
+    }
+    function fade(z,x){       
+        for(var i = 0;i<3;i++){
+            if (i!=z) {
+                b[i].style.border = "none";
+            }
+        }
+        c[x].style.display = "none";
+        $(c[z]).fadeIn();                
     }
 }
 function ajax() {
